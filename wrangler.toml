@@ -1,0 +1,8 @@
+# Transparency Certificate — remote MCP server
+name = "trc-mcp"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+
+[vars]
+# Public directory API origin the MCP tools call.
+API_BASE = "https://transparencycertified.com"
