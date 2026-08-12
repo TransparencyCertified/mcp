@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Remote MCP server exposing the Transparency Certificate directory public API",
   "private": true,
+  "license": "MIT",
+  "repository": "github:TransparencyCertified/mcp",
+  "homepage": "https://transparencycertified.com",
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
