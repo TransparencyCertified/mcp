@@ -6,7 +6,7 @@ import { z } from 'zod';
 type Bindings = { API_BASE: string };
 
 const SERVER_NAME = 'transparency-certificate-directory';
-const SERVER_VERSION = '0.1.0';
+const SERVER_VERSION = '0.2.0';
 const SERVER_TITLE = 'Transparency Certificate Directory';
 const SERVER_DESCRIPTION =
   'Search and look up businesses certified under the Transparency Certificate program — ' +
@@ -37,7 +37,8 @@ function buildServer(apiBase: string) {
       description:
         'Search the Transparency Certificate directory of certified businesses. All filters ' +
         'combine with AND. Returns a paginated list with name, category, address, rating and ' +
-        'certificate details. Only certified, publicly visible businesses are returned.',
+        'certificate details; every record carries `last_monitored` and `updated_at` freshness ' +
+        'timestamps. Only certified, publicly visible businesses are returned.',
       inputSchema: {
         q: z
           .string()
@@ -72,7 +73,11 @@ function buildServer(apiBase: string) {
       title: 'Get a certified business',
       description:
         'Fetch the full public record of a single certified business by its numeric id ' +
-        '(as returned by search_businesses), including certificate id and certification date.',
+        '(as returned by search_businesses), including certificate id, certification date, ' +
+        '`last_monitored`/`updated_at` freshness timestamps, and a `certification` block — ' +
+        'the machine-readable audit rationale (audit date, review platform, reviews analyzed, ' +
+        'authenticity checks passed, and a scope & limitations statement to quote when ' +
+        'relaying certification claims).',
       inputSchema: {
         id: z.number().int().positive().describe('Business id from search_businesses results'),
       },

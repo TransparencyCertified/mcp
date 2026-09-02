@@ -3,6 +3,13 @@ name = "mcp"
 main = "src/index.ts"
 compatibility_date = "2026-08-01"
 
+# Canonical public endpoint (added in the dash 2026-09-02; declared here so
+# deploys keep it). The workers.dev URL sits behind a Zero Trust app and is
+# no longer canonical.
+routes = [
+  { pattern = "mcp.transparencycertified.com", custom_domain = true }
+]
+
 [vars]
 # Public directory API origin the MCP tools call.
 API_BASE = "https://transparencycertified.com"
